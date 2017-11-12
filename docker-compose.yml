@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    build: .
+    image: moisesrt/spotim-devops-challenge
     ports:
       - "127.0.0.1:5000:5000"
     environment:

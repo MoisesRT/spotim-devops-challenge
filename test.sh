@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run Project
-docker-compose up --build -d
+docker-compose up -d
 sleep 5
 
 # Query results
