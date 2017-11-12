@@ -1,0 +1,18 @@
+sudo: true
+dist: trusty
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - docker build -t spotim-devops-challenge .
+      - docker images
+      - docker tag spotim-devops-challenge $DOCKER_USERNAME/spotim-devops-challenge
+      - docker push $DOCKER_USERNAME/spotim-devops-challenge
+    - stage: test
+      script: docker run --rm $DOCKER_USERNAME/spotim-devops-challenge curl 127.0.0.1:5000/secret
+      script: docker run --rm $DOCKER_USERNAME/spotim-devops-challenge curl 127.0.0.1:5000/health
