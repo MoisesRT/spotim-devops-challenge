@@ -6,16 +6,14 @@ jobs:
   include:
   - stage: build docker image
     script:
-    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    - docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
     - docker build -t spotim-devops-challenge .
     - docker images
-    - docker tag spotim-devops-challenge $DOCKER_USERNAME/spotim-devops-challenge
-    - docker push $DOCKER_USERNAME/spotim-devops-challenge
+    - docker tag spotim-devops-challenge ${DOCKER_USERNAME}/spotim-devops-challenge
+    - docker push ${DOCKER_USERNAME}/spotim-devops-challenge
   - stage: test
-    script: docker run --rm $DOCKER_USERNAME/spotim-devops-challenge curl 127.0.0.1:5000/health
+    script: docker run --rm ${DOCKER_USERNAME}/spotim-devops-challenge curl 127.0.0.1:5000/health
 env:
   global:
-    DOCKER_USERNAME:
-      secure: yzrRY+J0o7TQjpf2B//RVUe64lElRGF6M4gxjYrqeIsgyx8FKUpD6dba2vViywo10MWqKQrHYVdFZaz3YTPS7Zf0VCsi6Z051Aglo6eIfDQBC0vcZkUrAXZLS9R8kEub5HcbHlXkylrXFHmzeBdrRKYAJzJsCabsc8eFDjJf9NJu2j7a0tdlvswItI2cpeAv2LT+T9FxtkR2HWgyRW7knlNx7ZvjTaLvC7sWjvfCsZj6Oq3OFZzdcV+OO+swLeafg4YH7sqinB2h3TyQticlVCK0gNSGEcI/XGIAhR05Ix7JzHPM3duGqMvmbUbQknIkdu9Ejr9ucKXgWoMWbD5RJ7XUya8Pd1vX1WkHoasHXRxYmem+9tfImQSzb0t7rSAN2HQjUkHN51d3++N2mgJuT0aS8YJRywDxFmOg2jJUXttcLjsD7qCa9qrmA9rgPIzzXcKDBE+qT7mNzqy6PxY58QBqfaVSb1Vxg97t4tlVjzreYf+8/r7dF94mfRSwSFuRC7OGZWoL6Zlaxb/mCrg9NeDr3aNv/A7PoBzjOnWKPwLdXy5FvJ1ti8XTs4522W5+e6SYuV5iMaedWXEQiRQm1oEEiipgU3th6GazrSVrs5rCKyMH3hQoLIe0yprMnfzX6dHvQbd4tsdXez999hL1rItiQLyzesgv2cxxOvv9ngA=
-    DOCKER_PASSWORD:
-      secure: AjLrzbCFIEDVcpMu6+65bAwgl3Ce6DWJJHsHvhg3yXmw8/AdpEld0XpZ/xTrWXn01oYWouuvLQ5E/ziBw5ChrEekiGaO/0Lp7Kl1RjLwudix9lSthQivUgOJ//VYcAR2qk0WAdcghW4FUH+AYI2DqKTuHJQV3fscTPiP3nu5jktgf2XLclphb5BwEQqMJmXW4KLEd6GmThVXxU2WR1MisdYqF6N2IHYf6dowZ3sovdn0Hfqfs0hGfZftNJiEDXfbDQXxr7uP5cY3+jLgc9l3kvl3srl6Lux+ItcD7yFhzQ6iRenQKF4ezfzAajMw5DKQJ/6KxMCJLGwMpCtvWBgzv2UjH0/Vq6cCoiyUiRYrWfRt8RRJO3+0/ojhuokJ2yWBCZcKmv+jWqyXQhFdds3EvjX+M3cRXiMhaB+HpC+AqUUx7z6Q+wpojwRz7q4Ik+epMuK+wyi1IAZdd1JHNzk4ibYY/g2j3YNfTmJW0WHFzE/U00BEmRkp58o1HmFkCS7hF+nc/cwgP8RxUYU3wk1kr5D7OwGhVpK9DfrMVBbTWWI3tJyyj0Eyo+iToF0xJRk8YhEaF0Emo9ZpjAyOZkNaIM3ILVPgMH61Zs21q5CfBZckBp2sCEj/HMXVUojZ6ZH5XuY1GkWceqXrMhr+6vwJKDou0gzcaRuueEnla+hUpM0=
+  - secure: 1JkzD6eQp2QHIlleySDdHS+YlHdjZvrR0ilhTrp/e2th+oEeb9m5dNSPeBtOKZGsghZDwwn+Pc77IyxOJaXM7W9e3iS66N1TKTVIWiXBbU4CwkWEt5IOcLwTyXyYL+5ArsZYeuSooH2dnp1ywVQ1pEKTXtqkGJLOkcMlpPvz38gbTfhjvs+0xloCqnRjrYV7aKx0HYwDvPtfKCWQTcD4rGnzZ+UME+5pkjaHJi3HpTXoZUuYh0FfxrvgfJtF+3TqlcfQNMV67DqEIrQ/IApz/fhgvuVKJHSx9zjli9DNrDTVa+aY6qXja19E99fwQ/+mwFqjbC7AHW+ZLdUVvZWa76iRDMO1Ke5+6w4GOBRa3Ikb9YGrST4mSSjWlwRTTDc7V1f4CFywk6XqLGwoMOOdEAX8m6Dh/kmXV4knMXOW3oL5hhiv2oACPzQngYmaiJ3l3rlcCQNVTqkKF6F1E1Vbu5J/u+zRHOG5OHW24PV16fzL84S2TuXh3CX8V+52sv02V5zJyV/4XjJ0Lv/AnNxhbETdzQjNua+VghNG8OsXnWoWsPYOJQdQ25yHfHk8v3aXmUbLURW48LhLxatzl6IdNn+FwM61E4TjO0vaVkXxIbM6XGk4kvh2tGin/qAHN+Uaw+HXYA4CB0nhXTnPPFHGpZWll2d5YaTEJViD3LPOeNo=
+  - secure: Z7hTq8ixpyF1KCbOdzeBYr+/g9fvgpCBCBqlw2TMulm/fvVFdpstXR2t96Z/hISOqVrGGBj69fr5/eErswSqYQ5aO6zEfMzP+xZQEtE1uXQ9WO1ASGpW0lXJrlcaCfDUyNEcr/eZ9agHo0s7RYR+cxo4Zlut1/IjgMe8b0SICqcKWLlj+gWvVfTtccyfuvyAm91NC7uRA6T+vmh75f55M6oykJk5HFQKyijD1bNVH6huMgx6bgFd1lDXMgy1B19OsGCUWlCjqfh+/K3Vvp9glZSZMD6V5Wv2zmoWMNN854vesr+rYpUJR+fwE2CTgmum4qjBBtTRz6L8n2cjgOw+2lxwXawRzKZnMEyFKU4h9wrp8MTVYANTjI1Ey5cRq7fXam9Dcr9jHgHfx1XlaRj7s/VlcW7d7T6OHzh/fGNVQk28Wmg9pNpA9lknOHa60tg8wiL6/ipMMeyM7ldjEHFvU4OUqhTzmB68oSXaoNyGdokPMJcDtLlzDqaH9zAL1+1SY9I4getXeI8n2QIRmxb31fVCvMWs14tcx4athUK6ScFrfNnwqfoJSB7/wl47H5YWbsszb7Nx37AmlZeVz0/9jp00RE4RIA35GS+KdVMrS7saP6q8IHlDfwfAtW8jKt2AXdg6ET2ZHKgUA1xZHUoTgj/yinB5SqsHwgBfN/T+5GY=
