@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "127.0.0.1:5000:5000"
+    environment:
+      - DYNAMO_TABLE=devops-challenge
+      - CODE_NAME=thedoctor
+      - PROJECT_URL=https://github.com/MoisesRT/spotim-devops-challenge
+      - HUB_URL=https://hub.docker.com/r/moisesrt/spotim-devops-challenge
+    env_file:
+      - secret-variables.env
