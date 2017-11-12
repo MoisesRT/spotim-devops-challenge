@@ -12,7 +12,7 @@ jobs:
     - docker tag spotim-devops-challenge ${DOCKER_USERNAME}/spotim-devops-challenge
     - docker push ${DOCKER_USERNAME}/spotim-devops-challenge
   - stage: test
-    script: docker run --rm ${DOCKER_USERNAME}/spotim-devops-challenge curl 127.0.0.1:5000/health
+    script: ./test.sh
 env:
   global:
   - secure: 1JkzD6eQp2QHIlleySDdHS+YlHdjZvrR0ilhTrp/e2th+oEeb9m5dNSPeBtOKZGsghZDwwn+Pc77IyxOJaXM7W9e3iS66N1TKTVIWiXBbU4CwkWEt5IOcLwTyXyYL+5ArsZYeuSooH2dnp1ywVQ1pEKTXtqkGJLOkcMlpPvz38gbTfhjvs+0xloCqnRjrYV7aKx0HYwDvPtfKCWQTcD4rGnzZ+UME+5pkjaHJi3HpTXoZUuYh0FfxrvgfJtF+3TqlcfQNMV67DqEIrQ/IApz/fhgvuVKJHSx9zjli9DNrDTVa+aY6qXja19E99fwQ/+mwFqjbC7AHW+ZLdUVvZWa76iRDMO1Ke5+6w4GOBRa3Ikb9YGrST4mSSjWlwRTTDc7V1f4CFywk6XqLGwoMOOdEAX8m6Dh/kmXV4knMXOW3oL5hhiv2oACPzQngYmaiJ3l3rlcCQNVTqkKF6F1E1Vbu5J/u+zRHOG5OHW24PV16fzL84S2TuXh3CX8V+52sv02V5zJyV/4XjJ0Lv/AnNxhbETdzQjNua+VghNG8OsXnWoWsPYOJQdQ25yHfHk8v3aXmUbLURW48LhLxatzl6IdNn+FwM61E4TjO0vaVkXxIbM6XGk4kvh2tGin/qAHN+Uaw+HXYA4CB0nhXTnPPFHGpZWll2d5YaTEJViD3LPOeNo=
